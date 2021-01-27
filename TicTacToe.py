@@ -125,6 +125,7 @@ def makeAImove(game_board, BT):
     if BT[7] == BT[5] and type(BT[5]) == bool:
         if type(BT[8]) == int: return [boardUpdater(game_board, "9", 2), 8]
     #prevents corner trap
+    if type(BT[4]) == bool and type(BT[1]) == int: return [boardUpdater(game_board, "2", 2), 1]
     if BT[0] == BT[8] and type(BT[0]) == bool:
         if type(BT[2]) == int: return [boardUpdater(game_board, "3", 2), 2]
         if type(BT[6]) == int: return [boardUpdater(game_board, "7", 2), 6]
@@ -147,12 +148,9 @@ def makeAImove(game_board, BT):
         
 def TwoChecker(pos1, pos2, pos3, BT):
     if type(BT[pos1]) == bool and type(BT[pos2]) == bool and type(BT[pos3])== bool: return 10
-    if BT[pos1] == BT[pos2] and type(BT[pos1]) == bool:
-        if type(BT[pos3]) == int: return BT[pos3]
-    if BT[pos2] == BT[pos3] and type(BT[pos2]) == bool:
-        if type(BT[pos1]) == int: return BT[pos1]
-    if BT[pos1] == BT[pos3] and type(BT[pos1]) == bool:
-        if type(BT[pos2]) == int: return BT[pos2]
+    if BT[pos1] == BT[pos2] and type(BT[pos1]) == bool: return BT[pos3]
+    if BT[pos2] == BT[pos3] and type(BT[pos2]) == bool: return BT[pos1]
+    if BT[pos1] == BT[pos3] and type(BT[pos1]) == bool: return BT[pos2]
     else: return 10
 
 def EndgameChecker(BT):
